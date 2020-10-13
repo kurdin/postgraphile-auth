@@ -1,0 +1,11 @@
+{
+  "events": {
+    "restart": "yarn tsc --project worker/tsconfig-worker.json"
+  },
+  "ext": "json,ts",
+  "execMap": {
+    "ts": "ts-node --project worker/tsconfig-worker.json"
+  },
+  "verbose": true,
+  "watch": ["server/", "worker/"]
+}

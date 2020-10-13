@@ -1,0 +1,10 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column width="100%">
+        <mj-text>Someone, possibly you, requested a password reset for this email address. However, we have no record of a user with this email.</mj-text>
+        <mj-text>If it was you, you may need to register. If it wasn't you, please ignore this message.</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

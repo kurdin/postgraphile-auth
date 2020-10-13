@@ -1,0 +1,51 @@
+name: deploy_staging
+
+on: [push]
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/staging'
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: install build dependencies
+        run: yarn
+      - name: build server
+        run: yarn build:server && cp package.json server-build && cp yarn.lock server-build
+      - name: deploy client
+        uses: easingthemes/ssh-deploy@v2.1.4
+        env:
+          ARGS: "-rltgoDzvO --delete --exclude=server-build"
+          SSH_PRIVATE_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SOURCE: "build/"
+          REMOTE_HOST: ${{ secrets.STAGING_HOST }}
+          REMOTE_USER: ${{ secrets.STAGING_USER }}
+          TARGET: ${{ secrets.STAGING_CLIENT_TARGET }}
+      - name: deploy server
+        uses: easingthemes/ssh-deploy@v2.1.4
+        env:
+          ARGS: "-rltgoDzvO --delete --exclude=.env --exclude=pm2-ecosystem.json"
+          SSH_PRIVATE_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SOURCE: "server-build/"
+          REMOTE_HOST: ${{ secrets.STAGING_HOST }}
+          REMOTE_USER: ${{ secrets.STAGING_USER }}
+          TARGET: ${{ secrets.STAGING_SERVER_TARGET }}
+      - name: install server dependencies
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USER }}
+          key: ${{ secrets.STAGING_SSH_KEY }}
+          script: "cd ${{ secrets.STAGING_SERVER_TARGET }} && yarn --production --frozen-lockfile"
+      - name: pm2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USER }}
+          key: ${{ secrets.STAGING_SSH_KEY }}
+          script: "pm2 startOrRestart ${{ secrets.STAGING_SERVER_TARGET }}/pm2-ecosystem.json"

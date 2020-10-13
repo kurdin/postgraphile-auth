@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  x-web-config:
+    &web-config
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+    image: node:14
+    volumes:
+      - .:/app
+    working_dir: /app
+
+  install:
+    << : *web-config
+    command: ["yarn"]
+
+  postgraphile_auth_web:
+    << : *web-config
+    command: ["yarn", "start"]
+    container_name: postgraphile_auth_web
+    depends_on:
+      - postgraphile_auth_postgres
+    networks:
+      - postgraphile_auth_network
+    ports:
+      - 3000:3000
+      - 3001:3001
+    restart: unless-stopped
+    stdin_open: true
+
+  postgraphile_auth_postgres:
+    container_name: postgraphile_auth_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    image: "postgres:12.4"
+    networks:
+      - postgraphile_auth_network
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - postgraphile_auth_data:/var/lib/postgresql/data
+      - ./postgres_init_dev.sql:/docker-entrypoint-initdb.d/postgres_init_dev.sql
+
+networks:
+  postgraphile_auth_network:
+    driver: bridge
+
+volumes:
+  postgraphile_auth_data:
+    driver: local
+

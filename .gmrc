@@ -1,0 +1,15 @@
+{
+  "placeholders": {
+    ":DATABASE_OWNER_ROLE": "!ENV",
+    ":DATABASE_AUTHENTICATED_ROLE": "!ENV",
+    ":DATABASE_ANONYMOUS_ROLE": "!ENV"
+  },
+
+  "afterReset": [
+    {
+      "_": "sql",
+      "file": "install_extensions.sql",
+      "root": true
+    }
+  ]
+}

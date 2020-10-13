@@ -1,0 +1,15 @@
+COOKIE_SECRET=abcdefgh
+DATABASE_OWNER_ROLE=postgraphile_auth
+DATABASE_AUTHENTICATED_ROLE=authenticated
+DATABASE_ANONYMOUS_ROLE=anonymous
+DATABASE_URL=postgres://postgraphile_auth:postgraphile_auth@postgraphile_auth_postgres/postgraphile_auth
+JWT_SECRET=ABCDEF
+PUBLIC_URI=http://localhost:3001
+ROOT_DATABASE_URL=postgres://postgres:postgres@postgraphile_auth_postgres/postgres
+SENTRY_DSN=https://cac3e71ba1d54f66982311b0d6b6c620@sentry.io/1311939
+SERVER_PORT=3001
+SHADOW_DATABASE_URL=postgres://postgraphile_auth:postgraphile_auth@postgraphile_auth_postgres/postgraphile_auth_shadow
+STRIPE_KEY=sk_test_ReFcwTSkdAqK1VWS3C440MUp000UFh9yxP
+STRIPE_WEBHOOK_SECRET=123
+MAILJET_APIKEY_PUBLIC=01f1943feaef98f08259d0d79d2cb82d
+MAILJET_APIKEY_PRIVATE=2180a284b7efd6c667ff06b9c77fed01

@@ -1,0 +1,15 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column width="100%">
+        <mj-text>Please confirm your email address by clicking the button below.</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <mj-section>
+      <mj-column width="100%">
+        <mj-button mj-class="text" background-color="#4680b4" color="#FFF" font-weight="bold" border="none" padding="15px 30px" border-radius="10px" href="<%= it.confirmLink %>" font-family="Helvetica" padding-left="25px" padding-right="25px" padding-bottom="10px">Verify Email</mj-button>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
