@@ -1,5 +1,5 @@
 {
-  "name": "postgraphile-auth",
+  "name": "@richchurcher/postgraphile-auth",
   "version": "0.1.0",
   "private": false,
   "main": "./server/index.ts",
@@ -89,5 +89,8 @@
     ]
   },
   "proxy": "http://localhost:3001",
-  "repository": "git://github.com/richchurcher/postgraphile-auth.git"
+  "repository": "git://github.com/richchurcher/postgraphile-auth.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
