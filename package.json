@@ -1,7 +1,7 @@
 {
   "name": "postgraphile-auth",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "main": "./server/index.ts",
   "scripts": {
     "build": "react-scripts build",
