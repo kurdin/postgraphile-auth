@@ -23,17 +23,6 @@ const App: FC = () => (
         element={<ConfirmPasswordReset />}
       />
     </Route>
-    <Route path="/add-property" element={<PageNotFound />} />
-    <Route path="/add-project" element={<PageNotFound />} />
-    <Route path="/property" element={<PageNotFound />} />
-    <Route path="/property_gallery" element={<PageNotFound />} />
-    <Route path="/project" element={<PageNotFound />} />
-    <Route path="/home" element={<PageNotFound />} />
-    <Route path="/plan_page" element={<PageNotFound />} />
-    <Route path="/select_avatar_page" element={<PageNotFound />} />
-    <Route path="/template_page" element={<PageNotFound />} />
-    <Route path="/templates_page" element={<PageNotFound />} />
-    <Route path="/verity_page" element={<PageNotFound />} />
     <Route path="*" element={<PageNotFound />} />
   </Routes>
 );
